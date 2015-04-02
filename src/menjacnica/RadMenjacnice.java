@@ -1,25 +1,46 @@
 package menjacnica;
 
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+
+
 
 import valute.Valuta;
+import valute.Vrednost;
 
 public class RadMenjacnice implements MenjacnicaInterfejs {
+	private LinkedList<Vrednost> kursevi = new LinkedList<Vrednost>();
 
 	public void dodavanjeKursa(GregorianCalendar gc, float srednjiKurs,
 			float kupovniKurs, float prodajniKurs, Valuta valuta) {
-		// TODO Auto-generated method stub
-
+		Vrednost vr = new Vrednost();
+		vr.setDatum(gc);
+		vr.setKupvniKurs(kupovniKurs);
+		vr.setNazivValute(valuta);
+		vr.setProdajniKurs(prodajniKurs);
+		vr.setSrednjiKurs(srednjiKurs);
+		kursevi.add(vr);
 	}
 
 	public void brisanjeKursa(GregorianCalendar gc) {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < kursevi.size(); i++) {
+			if (kursevi.get(i).getDatum().equals(gc)) {
+				kursevi.remove(i);
+				return;
+			}
+		}
 
 	}
 
-	public void pronalazenjeKursa(GregorianCalendar gc) {
-		// TODO Auto-generated method stub
-
+	public Vrednost pronalazenjeKursa(GregorianCalendar gc) {
+		for (int i = 0; i < kursevi.size(); i++) {
+			if (kursevi.get(i).getDatum().equals(gc)) {
+			
+				return kursevi.get(i);
+			}
+			
+		}
+		throw new RuntimeException("Nepostoji kurs za trazeni datum");
 	}
 
 }
