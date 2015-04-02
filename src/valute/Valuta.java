@@ -3,25 +3,40 @@ package valute;
 public class Valuta {
 	private String skrIme;
 	private String punoIme;
+
 	public String getSkrIme() {
 		return skrIme;
 	}
+
 	public void setSkrIme(String skrIme) {
-		this.skrIme = skrIme;
+		if (skrIme == null || skrIme.isEmpty()) {
+			throw new RuntimeException(
+					"Greska:uneta vrednost ne moze biti null ili prazan String");
+		} else {
+			this.skrIme = skrIme;
+		}
 	}
+
 	public String getPunoIme() {
 		return punoIme;
 	}
+
 	public void setPunoIme(String punoIme) {
-		this.punoIme = punoIme;
+		if (punoIme == null || punoIme.isEmpty()) {
+			throw new RuntimeException(
+					"Greska:uneta vrednost ne moze biti null ili prazan String");
+		} else {
+			this.punoIme = punoIme;
+		}
 	}
-	
+
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((skrIme == null) ? 0 : skrIme.hashCode());
 		return result;
 	}
+
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -37,8 +52,9 @@ public class Valuta {
 			return false;
 		return true;
 	}
+
 	public String toString() {
 		return "Skraceno ime:" + skrIme + ", puno ime:" + punoIme;
 	}
-	
+
 }
